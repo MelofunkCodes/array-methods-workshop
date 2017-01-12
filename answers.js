@@ -26,3 +26,8 @@ aFiltered = a.filter(getPositives);
 console.log("\nEXERCISE 2: ");
 console.log("Original array: ", a);
 console.log("Filtered array: ", aFiltered);
+
+//EXERCISE 3
+//re-do exercise 1. Filter the array. then print out numbers from filtered array
+console.log("\nEXERCISE 3: ");
+return a.filter(getPositives).forEach(printPositives);
