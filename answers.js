@@ -34,23 +34,24 @@
 
 //EXERCISE 4
 //filter array using one line of code
-//***lines 38 to 49 are me trying to understand this exercise***
-var anArray = ["red", "orange", "blue", "yellow", "blue"];
+//==============lines 38 to 53 are me trying to understand this exercise================
+// var anArray = ["red", "orange", "blue", "yellow", "blue"];
 
-function isBlue(value){
-    return value === "blue";
-}
+// function isBlue(value){
+//     return value === "blue";
+// }
 
-// var filteredArray = anArray.filter( function(value, index, array){
-//     return isBlue(value);
-// });
+// // var filteredArray = anArray.filter( function(value, index, array){
+// //     return isBlue(value);
+// // });
 
-//ES6 way of making it into one line
-var filteredArray = anArray.filter( (value,index,array) => isBlue(value) );
+// //ES6 way of making it into one line
+// var filteredArray = anArray.filter( (value,index,array) => isBlue(value) );
 
-console.log("\nEXERCISE 4: ");
-console.log("Original array: ", anArray);
-console.log("Filtered array: ", filteredArray);
-// //====MY ANSWER TO EXERCISE 4====
-// var filteredArray = anArray.filter( (value,index,array) => callback(value) );
+// console.log("\nEXERCISE 4: ");
+// console.log("Original array: ", anArray);
+// console.log("Filtered array: ", filteredArray);
+
+//====MY ANSWER TO EXERCISE 4=============
+var filteredArray = anArray.filter( (value,index,array) => callback(value) );
 
