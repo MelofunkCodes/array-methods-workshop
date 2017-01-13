@@ -102,54 +102,88 @@
 // console.log("Longest word: ", longestWord("I wonder if there is fried chicken here"));
 // console.log("Longest word: ", longestWord("television is lit these days"));
 
-//EXERCISE 6
-//function countVowels will return # of vowels in string
-function countVowels(aString) {
-    var letters = aString.split("");
-    //by not specifying space in split argument, split will split string into array of characters vs array of words
+// //EXERCISE 6
+// //function countVowels will return # of vowels in string
+// function countVowels(aString) {
+//     var letters = aString.split("");
+//     //by not specifying space in split argument, split will split string into array of characters vs array of words
 
-    /*
-    Loop through arrOfChars
-    If current Character is equal to a vowel, increase counter 
-    */
-    // //~~~WHY DOESN'T LINES 116 - 119 WORK?~~~
-    // return arrOfChars.reduce(function(numVow, eachChar){
-    //     if(eachChar === "a" || eachChar === "e" || eachChar === "i" || === eachChar === "o" || eachChar ==="u") {
-    //         numVow++;
+//     /*
+//     Loop through arrOfChars
+//     If current Character is equal to a vowel, increase counter 
+//     */
+
+//     //how would i do it with FOREACH?
+//     var vowels = ["a", "e", "i", "o", "u"];
+//     // var numVow = 0;
+
+//     // //looping through each letter in letters array
+//     // letters.forEach(function(eachLetter) {
+
+//     //     //if letter in letters array DOES have a vowel, increment the counter numVow
+//     //     if (vowels.indexOf(eachLetter) !== -1) {
+//     //         numVow++;
+//     //     }
+
+//     //     return numVow;
+//     // });
+
+//     // return numVow;
+
+//     //now to convert it to REDUCE method
+//     return letters.reduce(function(numVow, eachLetter) {
+//         if (vowels.indexOf(eachLetter) !== -1) {
+//             numVow++;
+//         }
+//         return numVow;
+
+//     }, 0);
+// }
+
+
+// console.log("\nEXERCISE 6: ");
+// console.log("Number of vowels in string: ", countVowels("supercalifragilisticexpialadocious ll"));
+
+//EXERCISE 7
+//function takes array of numbers and returns object with property highest and lowest and their respective numbers
+function highLow(arr) {
+
+    // //method using FOREACH
+    // var extremes = {
+    //     lowest: Infinity,
+    //     highest: -Infinity
+    // };
+
+    // arr.forEach(function(num) {
+    //     if (num > extremes.highest) {
+    //         extremes.highest = num;
     //     }
 
-
-
-    //     return numVow;
-    // },0);
-
-    //how would i do it with FOREACH?
-    var vowels = ["a", "e", "i", "o", "u"];
-    // var numVow = 0;
-
-    // //looping through each letter in letters array
-    // letters.forEach(function(eachLetter) {
-
-    //     //if letter in letters array DOES have a vowel, increment the counter numVow
-    //     if (vowels.indexOf(eachLetter) !== -1) {
-    //         numVow++;
+    //     if (num < extremes.lowest) {
+    //         extremes.lowest = num;
     //     }
 
-    //     return numVow;
+    //     return extremes;
     // });
 
-    // return numVow;
+    // return extremes;
 
-    //now to convert it to REDUCE method
-    return letters.reduce(function(numVow, eachLetter) {
-        if (vowels.indexOf(eachLetter) !== -1) {
-            numVow++;
+    //NOW DOING CODE WITH REDUCE
+    return arr.reduce(function(extremes, num) {
+        if (num > extremes.highest) {
+            extremes.highest = num;
         }
-        return numVow;
 
-    }, 0);
+        if (num < extremes.lowest) {
+            extremes.lowest = num;
+        }
+
+        return extremes;
+
+    }, {lowest: Infinity,highest: -Infinity});
+
+
 }
 
-
-console.log("\nEXERCISE 6: ");
-console.log("Number of vowels in string: ", countVowels("dog jumped over moon"));
+console.log("\nEXERCISE 7: ");
+console.log("Extremes in array: ", highLow([-9.315, -9.926, -9.999, -9.001]));
