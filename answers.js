@@ -56,48 +56,100 @@
 // //====MY ANSWER TO EXERCISE 4=============
 // var filteredArray = anArray.filter( (value,index,array) => callback(value) );
 
-//EXERCISE 5
-//using reduce method to return longest word in string
-//using reduce method to take a word and return number of characters in word
+// //EXERCISE 5
+// //using reduce method to return longest word in string
+// //using reduce method to take a word and return number of characters in word
 
-// //if you wrote function using forEach
+// // //if you wrote function using forEach
+// // function longestWord(aString) {
+// //     var words = aString.split(" ");
+
+// //     var longestWord = "";
+
+// //     words.forEach(function(eachWord) {
+// //         if (eachWord.length > longestWord.length) {
+// //             longestWord = eachWord;
+// //         }
+// //     });
+
+// //     return longestWord;
+// // }
+
+// //now to convert lines 64-76 using REDUCE
 // function longestWord(aString) {
 //     var words = aString.split(" ");
 
-//     var longestWord = "";
+//     // var longestWord = "";
 
-//     words.forEach(function(eachWord) {
+//     /*
+//     Loop over the words
+//     if current word is longer than longestWord, make the current word longestWord
+//     otherwise, keep going
+//     */
+//     //can also equate var answer to lines 90-96
+//     return words.reduce(function(longestWord, eachWord) {
 //         if (eachWord.length > longestWord.length) {
 //             longestWord = eachWord;
 //         }
-//     });
 
-//     return longestWord;
+//         return longestWord;
+//     }, "");
 // }
 
-//now to convert lines 64-76 using REDUCE
-function longestWord(aString) {
-    var words = aString.split(" ");
 
-    // var longestWord = "";
+// console.log("\nEXERCISE 5: ");
+// console.log("Longest word: ", longestWord("dog jumped over moon"));
+// console.log("Longest word: ", longestWord("I wonder if there is fried chicken here"));
+// console.log("Longest word: ", longestWord("television is lit these days"));
+
+//EXERCISE 6
+//function countVowels will return # of vowels in string
+function countVowels(aString) {
+    var letters = aString.split("");
+    //by not specifying space in split argument, split will split string into array of characters vs array of words
 
     /*
-    Loop over the words
-    if current word is longer than longestWord, make the current word longestWord
-    otherwise, keep going
+    Loop through arrOfChars
+    If current Character is equal to a vowel, increase counter 
     */
-    //can also equate var answer to lines 90-96
-    return words.reduce(function(longestWord, eachWord) {
-        if (eachWord.length > longestWord.length) {
-            longestWord = eachWord;
-        }
+    // //~~~WHY DOESN'T LINES 116 - 119 WORK?~~~
+    // return arrOfChars.reduce(function(numVow, eachChar){
+    //     if(eachChar === "a" || eachChar === "e" || eachChar === "i" || === eachChar === "o" || eachChar ==="u") {
+    //         numVow++;
+    //     }
 
-        return longestWord;
-    }, "");
+
+
+    //     return numVow;
+    // },0);
+
+    //how would i do it with FOREACH?
+    var vowels = ["a", "e", "i", "o", "u"];
+    // var numVow = 0;
+
+    // //looping through each letter in letters array
+    // letters.forEach(function(eachLetter) {
+
+    //     //if letter in letters array DOES have a vowel, increment the counter numVow
+    //     if (vowels.indexOf(eachLetter) !== -1) {
+    //         numVow++;
+    //     }
+
+    //     return numVow;
+    // });
+
+    // return numVow;
+
+    //now to convert it to REDUCE method
+    return letters.reduce(function(numVow, eachLetter) {
+        if (vowels.indexOf(eachLetter) !== -1) {
+            numVow++;
+        }
+        return numVow;
+
+    }, 0);
 }
 
 
-console.log("\nEXERCISE 5: ");
-console.log("Longest word: ", longestWord("dog jumped over moon"));
-console.log("Longest word: ", longestWord("I wonder if there is fried chicken here"));
-console.log("Longest word: ", longestWord("television is lit these days"));
+console.log("\nEXERCISE 6: ");
+console.log("Number of vowels in string: ", countVowels("dog jumped over moon"));
