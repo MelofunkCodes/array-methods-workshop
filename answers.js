@@ -144,46 +144,126 @@
 // console.log("\nEXERCISE 6: ");
 // console.log("Number of vowels in string: ", countVowels("supercalifragilisticexpialadocious ll"));
 
-//EXERCISE 7
-//function takes array of numbers and returns object with property highest and lowest and their respective numbers
-function highLow(arr) {
+// //EXERCISE 7
+// //HIGH? LOW? function takes array of numbers and returns object with property highest and lowest and their respective numbers
+// function highLow(arr) {
 
-    // //method using FOREACH
-    // var extremes = {
-    //     lowest: Infinity,
-    //     highest: -Infinity
-    // };
+//     // //method using FOREACH
+//     // var extremes = {
+//     //     lowest: Infinity,
+//     //     highest: -Infinity
+//     // };
 
-    // arr.forEach(function(num) {
-    //     if (num > extremes.highest) {
-    //         extremes.highest = num;
-    //     }
+//     // arr.forEach(function(num) {
+//     //     if (num > extremes.highest) {
+//     //         extremes.highest = num;
+//     //     }
 
-    //     if (num < extremes.lowest) {
-    //         extremes.lowest = num;
-    //     }
+//     //     if (num < extremes.lowest) {
+//     //         extremes.lowest = num;
+//     //     }
 
-    //     return extremes;
-    // });
+//     //     return extremes;
+//     // });
 
-    // return extremes;
+//     // return extremes;
 
-    //NOW DOING CODE WITH REDUCE
-    return arr.reduce(function(extremes, num) {
-        if (num > extremes.highest) {
-            extremes.highest = num;
+//     //NOW DOING CODE WITH REDUCE
+//     return arr.reduce(function(extremes, num) {
+//         if (num > extremes.highest) {
+//             extremes.highest = num;
+//         }
+
+//         if (num < extremes.lowest) {
+//             extremes.lowest = num;
+//         }
+
+//         return extremes;
+
+//     }, {lowest: Infinity,highest: -Infinity});
+
+
+// }
+
+// console.log("\nEXERCISE 7: ");
+// console.log("Extremes in array: ", highLow([-9.315, -9.926, -9.999, -9.001]));
+
+
+//EXERCISE 8
+//WHEEL OF FORTUNE. Write a function that returns an object where the keys/properties are letters and the value is number of times letter appears
+
+//question: how would I sort alphabetically the letters in my object/final product?
+function countChars(aString) {
+    // //USING FOREACH METHOD
+    // var letters = {};
+
+    // aString
+    //     .toLowerCase()
+    //     .split("")
+    //     .filter( function(currentLetter){
+    //         return currentLetter !== " "; //this will take out the spaces in the string. For the letters that return false, filter will not keep in new array
+    //     })
+    //     .forEach( function(currentLetter){
+    //         //if currentLetter and it's counter exists in letters object, increment its value/counter
+    //         if (letters[currentLetter]) {
+    //             letters[currentLetter] = letters[currentLetter] + 1;
+    //         }
+    //         //else initiate it to value of 1
+    //         else{
+    //             letters[currentLetter] = 1;
+    //         }
+
+    //         return letters;
+    //     });
+
+    // return letters;
+
+    //NOW TO RECREATE WITH REDUCE METHOD
+    //how to alphabetize object? 
+    var finalProduct = aString
+        .toLowerCase()
+        .split("")
+        .filter(function(currentLetter) {
+            return currentLetter !== " "; //this will take out the spaces in the string. For the letters that return false, filter will not keep in new array
+        })
+        .reduce(function(letters, currentLetter) {
+            //if currentLetter and it's counter exists in letters object, increment its value/counter
+            if (letters[currentLetter]) {
+                letters[currentLetter] = letters[currentLetter] + 1;
+            }
+            //else initiate it to value of 1
+            else {
+                letters[currentLetter] = 1;
+            }
+
+            return letters;
+        }, {});
+
+    //how to sort alphabetically my object? (just out of curiousity)
+    //resource used: http://stackoverflow.com/questions/9658690/is-there-a-way-to-sort-order-keys-in-javascript-objects
+    var keys = Object.keys(finalProduct).sort(function(key1, key2) {
+        if (key1 < key2) {
+            return -1;
         }
-
-        if (num < extremes.lowest) {
-            extremes.lowest = num;
+        else if (key1 > key2) {
+            return 1;
         }
+        else {
+            return 0;
+        }
+    }); //the sort works
 
-        return extremes;
+    //this will be the FINAL ALPHABETIZED OBJECT!!
+    var finalProductAlpha = {};
 
-    }, {lowest: Infinity,highest: -Infinity});
+    keys.forEach(function(eachKey) {
+        finalProductAlpha[eachKey] = finalProduct[eachKey];
 
+        return finalProductAlpha;
+    });
 
+    return finalProductAlpha;
 }
 
-console.log("\nEXERCISE 7: ");
-console.log("Extremes in array: ", highLow([-9.315, -9.926, -9.999, -9.001]));
+console.log("\nEXERCISE 8: ");
+console.log("# of Characters in your string: ", countChars("Fridays are proper days for fried chicken"));
