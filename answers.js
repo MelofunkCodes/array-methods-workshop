@@ -189,81 +189,112 @@
 // console.log("Extremes in array: ", highLow([-9.315, -9.926, -9.999, -9.001]));
 
 
-//EXERCISE 8
-//WHEEL OF FORTUNE. Write a function that returns an object where the keys/properties are letters and the value is number of times letter appears
+// //EXERCISE 8
+// //WHEEL OF FORTUNE. Write a function that returns an object where the keys/properties are letters and the value is number of times letter appears
 
-//question: how would I sort alphabetically the letters in my object/final product?
-function countChars(aString) {
-    // //USING FOREACH METHOD
-    // var letters = {};
+// function countChars(aString) {
+//     // //USING FOREACH METHOD
+//     // var letters = {};
 
-    // aString
-    //     .toLowerCase()
-    //     .split("")
-    //     .filter( function(currentLetter){
-    //         return currentLetter !== " "; //this will take out the spaces in the string. For the letters that return false, filter will not keep in new array
-    //     })
-    //     .forEach( function(currentLetter){
-    //         //if currentLetter and it's counter exists in letters object, increment its value/counter
-    //         if (letters[currentLetter]) {
-    //             letters[currentLetter] = letters[currentLetter] + 1;
-    //         }
-    //         //else initiate it to value of 1
-    //         else{
-    //             letters[currentLetter] = 1;
-    //         }
+//     // aString
+//     //     .toLowerCase()
+//     //     .split("")
+//     //     .filter( function(currentLetter){
+//     //         return currentLetter !== " "; //this will take out the spaces in the string. For the letters that return false, filter will not keep in new array
+//     //     })
+//     //     .forEach( function(currentLetter){
+//     //         //if currentLetter and it's counter exists in letters object, increment its value/counter
+//     //         if (letters[currentLetter]) {
+//     //             letters[currentLetter] = letters[currentLetter] + 1;
+//     //         }
+//     //         //else initiate it to value of 1
+//     //         else{
+//     //             letters[currentLetter] = 1;
+//     //         }
 
-    //         return letters;
-    //     });
+//     //         return letters;
+//     //     });
 
-    // return letters;
+//     // return letters;
 
-    //NOW TO RECREATE WITH REDUCE METHOD
-    //how to alphabetize object? 
-    var finalProduct = aString
-        .toLowerCase()
-        .split("")
-        .filter(function(currentLetter) {
-            return currentLetter !== " "; //this will take out the spaces in the string. For the letters that return false, filter will not keep in new array
-        })
-        .reduce(function(letters, currentLetter) {
-            //if currentLetter and it's counter exists in letters object, increment its value/counter
-            if (letters[currentLetter]) {
-                letters[currentLetter] = letters[currentLetter] + 1;
-            }
-            //else initiate it to value of 1
-            else {
-                letters[currentLetter] = 1;
-            }
+//     //NOW TO RECREATE WITH REDUCE METHOD
+//     //how to alphabetize object? 
+//     var finalProduct = aString
+//         .toLowerCase()
+//         .split("")
+//         .filter(function(currentLetter) {
+//             return currentLetter !== " "; //this will take out the spaces in the string. For the letters that return false, filter will not keep in new array
+//         })
+//         .reduce(function(letters, currentLetter) {
+//             //if currentLetter and it's counter exists in letters object, increment its value/counter
+//             if (letters[currentLetter]) {
+//                 letters[currentLetter] = letters[currentLetter] + 1;
+//             }
+//             //else initiate it to value of 1
+//             else {
+//                 letters[currentLetter] = 1;
+//             }
 
-            return letters;
-        }, {});
+//             return letters;
+//         }, {});
+//         //I could just end the code here and return above, but...
 
-    //how to sort alphabetically my object? (just out of curiousity)
-    //resource used: http://stackoverflow.com/questions/9658690/is-there-a-way-to-sort-order-keys-in-javascript-objects
-    var keys = Object.keys(finalProduct).sort(function(key1, key2) {
-        if (key1 < key2) {
-            return -1;
-        }
-        else if (key1 > key2) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }); //the sort works
+//     //...how to sort alphabetically my object? (just out of curiousity)
+//     //resource used: http://stackoverflow.com/questions/9658690/is-there-a-way-to-sort-order-keys-in-javascript-objects
+//     var keys = Object.keys(finalProduct).sort(function(key1, key2) {
+//         if (key1 < key2) {
+//             return -1;
+//         }
+//         else if (key1 > key2) {
+//             return 1;
+//         }
+//         else {
+//             return 0;
+//         }
+//     }); //the sort works
 
-    //this will be the FINAL ALPHABETIZED OBJECT!!
-    var finalProductAlpha = {};
+//     //this will be the FINAL ALPHABETIZED OBJECT!!
+//     var finalProductAlpha = {};
 
-    keys.forEach(function(eachKey) {
-        finalProductAlpha[eachKey] = finalProduct[eachKey];
+//     keys.forEach(function(eachKey) {
+//         finalProductAlpha[eachKey] = finalProduct[eachKey];
 
-        return finalProductAlpha;
-    });
+//         return finalProductAlpha;
+//     });
 
-    return finalProductAlpha;
+//     return finalProductAlpha;
+// }
+
+// console.log("\nEXERCISE 8: ");
+// console.log("# of Characters in your string: ", countChars("Fridays are proper days for fried chicken"));
+
+//EXERCISE 9
+//Functional Programming.
+//create negate function that takes a parameter and another function.
+function negate(someFxn) {
+    /*
+    1. run the someFxn
+    2. someFxn should return true or false
+    3. take the value of that and invert it with !
+    4. return that value
+    
+    */
+    
+    return function(a){ //this anonymous fxn is a replicate of whatever fxn you are trying to negate. In this case isEven. Since isEven is taking one parameter, anonymous ALSO needs to take one parameter
+        return !someFxn(a); //you are going to execute someFxn with argument a, in this case isEven, then when it returns a TRUE, flip it to FALSE, and return it up the tree so eventually "negate" returns FALSEEEEE
+    };
 }
 
-console.log("\nEXERCISE 8: ");
-console.log("# of Characters in your string: ", countChars("Fridays are proper days for fried chicken"));
+function isEven(num){
+    return num % 2 === 0;
+}
+
+var a = [2, 5, 6, 77, 9];
+var isOdd = negate(isEven);
+
+var aEven = a.filter(isEven);
+var aOdd = a.filter(isOdd);
+
+console.log("\nEXERCISE 9: ");
+console.log("Your even numbers are : ", aEven);
+console.log("Your odd numbers are : ", aOdd);
